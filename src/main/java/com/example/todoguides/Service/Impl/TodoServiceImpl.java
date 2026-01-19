@@ -28,9 +28,22 @@ public class TodoServiceImpl implements TodoService {
         savedTodoDto.setId(savedTodo.getId());
         savedTodoDto.setTitle(savedTodo.getTitle());
         savedTodoDto.setDescription(savedTodo.getDescription());
-        savedTodoDto.setCompleted(savedTodoDto.isCompleted());
+        savedTodoDto.setCompleted(savedTodo.isCompleted());
 
         return savedTodoDto;
 
+    }
+
+    @Override
+    public TodoDto getTodo(Long id) {
+        Todo todo = todoRepo.findById(id).get();
+
+        TodoDto todoDto = new TodoDto();
+        todoDto.setId(todo.getId());
+        todoDto.setTitle(todo.getTitle());
+        todoDto.setDescription(todo.getDescription());
+        todoDto.setCompleted(todo.isCompleted());
+
+        return todoDto;
     }
 }

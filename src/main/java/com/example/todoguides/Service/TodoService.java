@@ -4,4 +4,5 @@ import com.example.todoguides.DTO.TodoDto;
 
 public interface TodoService {
     TodoDto addTodo(TodoDto todoDto);
+    TodoDto getTodo(Long id);
 }
