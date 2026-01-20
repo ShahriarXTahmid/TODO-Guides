@@ -1,6 +1,7 @@
 package com.example.todoguides.Controller;
 
 import com.example.todoguides.DTO.TodoDto;
+import com.example.todoguides.Entity.Todo;
 import com.example.todoguides.Service.TodoService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -51,6 +52,13 @@ public class TodoController {
     public ResponseEntity<String> deleteTodo(@PathVariable Long id) {
         todoService.deleteTodo(id);
         return new ResponseEntity<>("Todo deleted successfully", HttpStatus.OK);
+    }
+
+    // Build completeTodo rest api
+    @PatchMapping("{id}")  // PatchMapping -> updates parts of the entity
+    public ResponseEntity<TodoDto> completeTodo(@PathVariable Long id) {
+        TodoDto updatedTodo = todoService.completeTodo(id);
+        return new ResponseEntity<>(updatedTodo, HttpStatus.OK);
     }
 
 }

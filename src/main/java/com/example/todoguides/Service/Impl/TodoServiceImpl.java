@@ -74,5 +74,15 @@ public class TodoServiceImpl implements TodoService {
         todoRepo.deleteById(id);
     }
 
+    @Override
+    public TodoDto completeTodo(Long id) {
+        Todo todo = todoRepo.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Todo not found with the id: " + id));
+
+        todo.setCompleted(Boolean.TRUE);
+        Todo updatedTodo = todoRepo.save(todo);
+        return modelMapper.map(updatedTodo, TodoDto.class);
+    }
+
 
 }
