@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -32,9 +33,17 @@ public class TodoController {
 
     // Build getAll todo Rest Api
     @GetMapping
-    public ResponseEntity<List<TodoDto>> getAllTodos(){
+    public ResponseEntity<List<TodoDto>> getAllTodos() {
         List<TodoDto> todos = todoService.getAllTodos();
         return ResponseEntity.ok(todos);
+    }
+
+    //  Build UpdateTodo rest Api
+    @PutMapping("{id}")
+    public ResponseEntity<TodoDto> updateTodo(@RequestBody TodoDto todoDto, @PathVariable Long id) {
+        TodoDto updateTodo = todoService.updateTodo(todoDto, id);
+
+        return new ResponseEntity<>(updateTodo, HttpStatus.OK);
     }
 
 }
