@@ -55,7 +55,7 @@ public class TodoController {
     }
 
     // Build completeTodo rest api
-    @PatchMapping("{id}")  // PatchMapping -> updates parts of the entity
+    @PatchMapping("{id}/complete")  // PatchMapping -> updates parts of the entity
     public ResponseEntity<TodoDto> completeTodo(@PathVariable Long id) {
         TodoDto updatedTodo = todoService.completeTodo(id);
         return new ResponseEntity<>(updatedTodo, HttpStatus.OK);
