@@ -1,7 +1,6 @@
 package com.example.todoguides.Controller;
 
 import com.example.todoguides.DTO.TodoDto;
-import com.example.todoguides.Entity.Todo;
 import com.example.todoguides.Service.TodoService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/todos")
+@RequestMapping("api/todo")
 @AllArgsConstructor
 public class TodoController {
 
@@ -33,7 +32,7 @@ public class TodoController {
     }
 
     // Build getAll todo Rest Api
-    @GetMapping
+    @GetMapping("todos")
     public ResponseEntity<List<TodoDto>> getAllTodos() {
         List<TodoDto> todos = todoService.getAllTodos();
         return ResponseEntity.ok(todos);
